@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Analysis</title>
+	
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<br>
+	<h1 style="text-align: center;"><b>Dashboard</b></h1><br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4">
+				<div id="myDiv"></div>
+				<script type="text/javascript">
+					var x = {{slices1|safe}}
+					var y = {{emotion1|safe}}
+					console.log(x);
+					console.log(y);
+					var data = [
+					  {
+					    values: x,
+					    labels: y,
+					    type:'pie'
+					  }
+					];
+					var layout = {
+					  autosize: false,
+					  width: 600,
+					  title: 'Clusters'
+					};
+					Plotly.newPlot("myDiv", data, layout);
+				</script>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div id="myDiv2" ></div>
+				<script type="text/javascript">
+					var x = {{emotion5|safe}}
+					var y = {{slices5|safe}}
+					console.log(x);
+					console.log(y);
+					var data1 = [
+					  {
+					    x: x,
+					    y: y,
+					     marker:{
+							color: ['rgba(247, 202, 24, 1)', 'rgba(154, 18, 179, 1)', 'rgba(60, 233, 24,1)', 'rgba(207, 0, 15, 1)', 'rgba(44, 130, 201, 1)','rgba(247, 202, 24, 1)', 'rgba(154, 18, 179, 1)', 'rgba(60, 233, 24,1)', 'rgba(207, 0, 15, 1)', 'rgba(44, 130, 201, 1)','rgba(247, 202, 24, 1)', 'rgba(154, 18, 179, 1)', 'rgba(60, 233, 24,1)']
+						},
+					    type:'bar'
+					  }
+					];
+					var layout = {
+					  autosize: false,
+					  width:1000,
+					  title: 'Total Sentiments'
+					};
+					
+					Plotly.newPlot("myDiv2", data1, layout);
+				</script>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
